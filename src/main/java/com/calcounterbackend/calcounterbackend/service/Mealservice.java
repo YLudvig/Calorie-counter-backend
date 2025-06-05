@@ -1,6 +1,7 @@
 package com.calcounterbackend.calcounterbackend.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,10 @@ public class Mealservice {
 
     public Mealitem saveMealitem(Mealitem mealitem){
         return mealrepository.save(mealitem);
+    }
+
+    public void deleteMealItem(UUID mealId) {
+        mealrepository.deleteById(mealId);
     }
 
 }
