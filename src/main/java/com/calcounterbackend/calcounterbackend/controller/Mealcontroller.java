@@ -1,5 +1,7 @@
 package com.calcounterbackend.calcounterbackend.controller;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.calcounterbackend.calcounterbackend.model.Mealitem;
@@ -26,6 +29,11 @@ public class Mealcontroller {
     @GetMapping("/getAll")
     public List<Mealitem> getAllMealItems() {
         return mealservice.getAll();
+    }
+
+    @GetMapping("/getByUserIdAndDate")
+    public List<Mealitem> getMealItemByUserIdAndDate(@RequestParam UUID userId, @RequestParam LocalDate date){
+        return mealservice.getMealItemByUserIdAndDate(userId, date);
     }
 
     @PostMapping("/add")
