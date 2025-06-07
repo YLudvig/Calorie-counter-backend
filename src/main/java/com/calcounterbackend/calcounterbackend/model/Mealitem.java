@@ -1,6 +1,6 @@
 package com.calcounterbackend.calcounterbackend.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
@@ -20,6 +20,8 @@ public class Mealitem {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID mealId;
+
+    private UUID userId;
 
     // Namn
     private String name;
@@ -46,10 +48,10 @@ public class Mealitem {
     private String mealtype;
 
     // Datum
-    private Date date;
+    private LocalDate date;
 
     public Mealitem(String name, double calories, double protein, double carbs, double fats, double fiber,
-            double weight, String mealtype, Date date) {
+            double weight, String mealtype, LocalDate date) {
         this.name = name;
         this.calories = calories;
         this.protein = protein;
