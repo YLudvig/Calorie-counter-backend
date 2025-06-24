@@ -14,5 +14,9 @@ import com.calcounterbackend.calcounterbackend.model.Mealitem;
 public interface Mealrepository extends JpaRepository <Mealitem, UUID>{
 
     List<Mealitem> findAllByUserIdAndDate(UUID userId, LocalDate date);
+
+    void deleteByMealIdAndUserId(UUID mealId, UUID userId);
+
+
     
 }
