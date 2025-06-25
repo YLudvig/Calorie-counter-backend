@@ -42,9 +42,9 @@ public class Mealcontroller {
         return "Meal saved";
     }
 
-    @DeleteMapping("/{mealId}")
-    public String deleteMealItem(@PathVariable UUID mealId){
-        mealservice.deleteMealItem(mealId);
+    @DeleteMapping("/delete")
+    public String deleteMealItem(@RequestParam UUID mealId, @RequestParam UUID userId){
+        mealservice.deleteMealItem(mealId, userId);
         return "Mealitem deleted";
     }
 

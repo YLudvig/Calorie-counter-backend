@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.calcounterbackend.calcounterbackend.model.Mealitem;
 import com.calcounterbackend.calcounterbackend.repository.Mealrepository;
@@ -29,8 +30,9 @@ public class Mealservice {
         return mealrepository.save(mealitem);
     }
 
-    public void deleteMealItem(UUID mealId) {
-        mealrepository.deleteById(mealId);
+    @Transactional
+    public void deleteMealItem(UUID mealId, UUID userId) {
+        mealrepository.deleteByMealIdAndUserId(mealId, userId);
     }
 
 }
