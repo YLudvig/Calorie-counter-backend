@@ -16,9 +16,9 @@ import com.calcounterbackend.calcounterbackend.repository.Mealrepository;
 public class Mealservice {
 
     @Autowired
-    private Mealrepository mealrepository; 
+    private Mealrepository mealrepository;
 
-    public List<Mealitem> getAll(){
+    public List<Mealitem> getAll() {
         return mealrepository.findAll();
     }
 
@@ -26,7 +26,11 @@ public class Mealservice {
         return mealrepository.findAllByUserIdAndDate(userId, date);
     }
 
-    public Mealitem saveMealitem(Mealitem mealitem){
+    public List<Mealitem> getMealItemByUserId(UUID userId) {
+        return mealrepository.findAllByUserId(userId);
+    }
+
+    public Mealitem saveMealitem(Mealitem mealitem) {
         return mealrepository.save(mealitem);
     }
 

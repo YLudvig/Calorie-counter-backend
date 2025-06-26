@@ -35,6 +35,11 @@ public class Mealcontroller {
         return mealservice.getMealItemByUserIdAndDate(userId, date);
     }
 
+    @GetMapping("/getByUserId")
+    public List<Mealitem> getMealItemByUserIdAndDate(@RequestParam UUID userId){
+        return mealservice.getMealItemByUserId(userId);
+    }
+
     @PostMapping("/add")
     public String saveMealItem(@RequestBody Mealitem mealitem) {
         mealservice.saveMealitem(mealitem);
