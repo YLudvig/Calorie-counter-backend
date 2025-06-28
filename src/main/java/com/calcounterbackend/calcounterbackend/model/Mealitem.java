@@ -3,10 +3,12 @@ package com.calcounterbackend.calcounterbackend.model;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +26,8 @@ public class Mealitem {
     private UUID userId;
 
     // Namn
+    @Column(length = 64)
+    @Size(max = 64)
     private String name;
 
     // Antal kalorier
