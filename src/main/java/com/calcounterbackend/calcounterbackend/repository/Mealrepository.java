@@ -18,7 +18,8 @@ public interface Mealrepository extends JpaRepository<Mealitem, UUID> {
 
     void deleteByMealIdAndUserId(UUID mealId, UUID userId);
 
-    //SQL query som hanterar filtrering och sortering på backend och skickar en snygg lista till frontend
+    // SQL query som hanterar filtrering och sortering på backend och skickar en
+    // snygg lista till frontend
     @Query(value = """
             SELECT m.*
             FROM mealitem m

@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.calcounterbackend.calcounterbackend.model.Mealitem;
 import com.calcounterbackend.calcounterbackend.service.Mealservice;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/meal")
 public class Mealcontroller {
@@ -41,7 +43,7 @@ public class Mealcontroller {
     }
 
     @PostMapping("/add")
-    public String saveMealItem(@RequestBody Mealitem mealitem) {
+    public String saveMealItem(@Valid @RequestBody Mealitem mealitem) {
         mealservice.saveMealitem(mealitem);
         System.out.println(mealitem);
         return "Meal saved";
@@ -54,7 +56,7 @@ public class Mealcontroller {
     }
 
     @PatchMapping("/patchWeight")
-    public String patchMealItem(@RequestBody Mealitem mealitem){
+    public String patchMealItem(@Valid @RequestBody Mealitem mealitem){
         mealservice.saveMealitem(mealitem);
         return "Mealitem vikt patchad för " + mealitem.getName();
     }
