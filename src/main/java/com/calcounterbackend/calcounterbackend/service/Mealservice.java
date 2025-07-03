@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.calcounterbackend.calcounterbackend.dto.DailyTotalDTO;
+import com.calcounterbackend.calcounterbackend.dto.TypeTotalDTO;
 import com.calcounterbackend.calcounterbackend.model.Mealitem;
 import com.calcounterbackend.calcounterbackend.repository.Mealrepository;
 
@@ -27,8 +28,8 @@ public class Mealservice {
         return mealrepository.findAllByUserIdAndDate(userId, date);
     }
 
-    public List<Mealitem> getMealItemByUserIdAndDateAndMealtype(UUID userId, LocalDate date, String mealtype) {
-        return mealrepository.findAllByUserIdAndDateAndMealtype(userId, date, mealtype);
+    public List<TypeTotalDTO> getTypeTotals(UUID userId, LocalDate date) {
+        return mealrepository.findTypeTotals(userId, date);
     }
 
     public List<Mealitem> getMealItemByUserId(UUID userId) {

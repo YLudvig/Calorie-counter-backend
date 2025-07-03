@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.calcounterbackend.calcounterbackend.dto.DailyTotalDTO;
+import com.calcounterbackend.calcounterbackend.dto.TypeTotalDTO;
 import com.calcounterbackend.calcounterbackend.model.Mealitem;
 
 @Repository
@@ -38,7 +39,20 @@ public interface Mealrepository extends JpaRepository<Mealitem, UUID> {
     List<Mealitem> findAllByUserId(UUID userId);
 
     // Query som summerar typetotals för dagen
-    List<Mealitem> findAllByUserIdAndDateAndMealtype(UUID userId, LocalDate date, String mealtype);
+    @Query(value = """
+            SELECT
+                mealtype,
+                sum(calories * weight) as total_calories,
+                sum(carbs * weight) as total_carbs,
+                sum(fats * weight) as total_fats,
+                sum(fiber * weight) as total_fiber,
+                sum(protein * weight) as total_protein
+            FROM mealitem
+            WHERE DATE(date) = :date AND user_id = :userId
+            GROUP BY mealtype
+            ORDER BY mealtype;
+            """, nativeQuery = true)
+    List<TypeTotalDTO> findTypeTotals(UUID userId, LocalDate date);
 
     // Query som summerar dailytotal
     @Query(value = """
