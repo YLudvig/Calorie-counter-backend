@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.calcounterbackend.calcounterbackend.dto.DailyTotalDTO;
 import com.calcounterbackend.calcounterbackend.model.Mealitem;
 import com.calcounterbackend.calcounterbackend.service.Mealservice;
 
@@ -40,6 +41,16 @@ public class Mealcontroller {
     @GetMapping("/getByUserId")
     public List<Mealitem> getMealItemByUserIdAndDate(@RequestParam UUID userId){
         return mealservice.getMealItemByUserId(userId);
+    }
+
+    @GetMapping("/getByUserIdAndDateAndMealtype")
+    public List<Mealitem> getMealItemByUserIdAndDateAndMealtype(@RequestParam UUID userId, @RequestParam LocalDate date, @RequestParam String mealtype){
+        return mealservice.getMealItemByUserIdAndDateAndMealtype(userId, date, mealtype);
+    }
+
+    @GetMapping("/getDailyTotal")
+    public DailyTotalDTO getDailyTotal(@RequestParam UUID userId, @RequestParam LocalDate date){
+        return mealservice.getDailyTotal(userId, date);
     }
 
     @PostMapping("/add")
