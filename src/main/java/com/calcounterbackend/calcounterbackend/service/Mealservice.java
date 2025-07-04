@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.calcounterbackend.calcounterbackend.dto.DailyTotalDTO;
+import com.calcounterbackend.calcounterbackend.dto.TypeTotalDTO;
 import com.calcounterbackend.calcounterbackend.model.Mealitem;
 import com.calcounterbackend.calcounterbackend.repository.Mealrepository;
 
@@ -26,8 +28,16 @@ public class Mealservice {
         return mealrepository.findAllByUserIdAndDate(userId, date);
     }
 
+    public List<TypeTotalDTO> getTypeTotals(UUID userId, LocalDate date) {
+        return mealrepository.findTypeTotals(userId, date);
+    }
+
     public List<Mealitem> getMealItemByUserId(UUID userId) {
         return mealrepository.findAllByUserId(userId);
+    }
+
+    public DailyTotalDTO getDailyTotal(UUID userId, LocalDate date) {
+        return mealrepository.getDailyTotal(userId, date);
     }
 
     public Mealitem saveMealitem(Mealitem mealitem) {
@@ -38,5 +48,7 @@ public class Mealservice {
     public void deleteMealItem(UUID mealId, UUID userId) {
         mealrepository.deleteByMealIdAndUserId(mealId, userId);
     }
+
+
 
 }

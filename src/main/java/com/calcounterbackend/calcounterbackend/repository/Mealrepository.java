@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.calcounterbackend.calcounterbackend.dto.DailyTotalDTO;
+import com.calcounterbackend.calcounterbackend.dto.TypeTotalDTO;
 import com.calcounterbackend.calcounterbackend.model.Mealitem;
 
 @Repository
@@ -35,4 +37,33 @@ public interface Mealrepository extends JpaRepository<Mealitem, UUID> {
             ORDER BY m.date DESC, m.name ASC
             """, nativeQuery = true)
     List<Mealitem> findAllByUserId(UUID userId);
+
+    // Query som summerar typetotals för dagen
+    @Query(value = """
+            SELECT
+                mealtype,
+                sum(calories * weight) as total_calories,
+                sum(carbs * weight) as total_carbs,
+                sum(fats * weight) as total_fats,
+                sum(fiber * weight) as total_fiber,
+                sum(protein * weight) as total_protein
+            FROM mealitem
+            WHERE DATE(date) = :date AND user_id = :userId
+            GROUP BY mealtype
+            ORDER BY mealtype;
+            """, nativeQuery = true)
+    List<TypeTotalDTO> findTypeTotals(UUID userId, LocalDate date);
+
+    // Query som summerar dailytotal
+    @Query(value = """
+            SELECT
+                SUM(calories * weight) AS sumcalories,
+                SUM(carbs * weight) AS sumcarbs,
+                SUM(fats * weight) AS sumfats,
+                SUM(fiber * weight) AS sumfiber,
+                SUM(protein * weight) AS sumprotein
+            FROM mealitem
+            WHERE DATE(date) = :date AND user_id = :userId
+            """, nativeQuery = true)
+    DailyTotalDTO getDailyTotal(UUID userId, LocalDate date);
 }
