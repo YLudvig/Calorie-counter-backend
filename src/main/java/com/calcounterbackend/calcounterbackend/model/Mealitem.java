@@ -48,6 +48,12 @@ public class Mealitem {
     // Vikt av mål
     private double weight;
 
+    // Volym av mål om applicerbart
+    private double volume;
+
+    // Antal av mål om lämpligt
+    private int pieces;
+
     // Måltypen
     private String mealtype;
 
