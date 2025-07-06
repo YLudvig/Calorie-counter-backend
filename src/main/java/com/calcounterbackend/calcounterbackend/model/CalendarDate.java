@@ -15,18 +15,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class WeightTracking {
-
+public class CalendarDate {
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID weightTrackingId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; 
 
-    private UUID userId;
+    private LocalDate theDate; 
 
-    private double weight;
+    private int weekNumber; 
 
-    private double dailycalories;
-
-    private LocalDate date;
+    private String dayName; 
 
 }
