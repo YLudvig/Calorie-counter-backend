@@ -17,7 +17,7 @@ public class WeightTrackingService {
     private WeightTrackingRepository weightTrackingRepository;
 
     public List<WeightTrackingDTO> getWeightTrackingItems(UUID userId) {
-        return weightTrackingRepository.getWeightTrackingItems(userId);
+        return weightTrackingRepository.findDTOByUserId(userId);
     }
 
     public WeightTracking saveWeightTrackingItem(WeightTracking weightTracking) {

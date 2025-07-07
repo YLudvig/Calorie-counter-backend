@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,4 +36,8 @@ public class WeightTrackingController {
         return "Calories and weight saved";
     }
 
+    @PatchMapping("/patchWeightAndCalories")
+    public WeightTracking patchWeightTrackingItem(@RequestBody WeightTracking weightTracking){
+        return weightTrackingService.saveWeightTrackingItem(weightTracking);
+    }
 }

@@ -13,16 +13,17 @@ import com.calcounterbackend.calcounterbackend.model.WeightTracking;
 @Repository
 public interface WeightTrackingRepository extends JpaRepository<WeightTracking, UUID> {
 
-    @Query(value = """
-            SELECT
-                wt.weight_tracking_id AS weightTrackingId,
-                wt.input_week_day AS inputWeekDay,
-                wt.dailycalories AS dailyCalories,
-                wt.week AS week,
-                wt.weight AS weight
-            FROM weight_tracking wt
-            WHERE wt.user_id = :userId
-                    """, nativeQuery = true)
-    List<WeightTrackingDTO> getWeightTrackingItems(UUID userId);
-
+    @Query("""
+                SELECT new com.calcounterbackend.calcounterbackend.dto.WeightTrackingDTO(
+                    w.weightTrackingId,
+                    w.userId,
+                    w.inputWeekDay,
+                    w.dailycalories,
+                    w.week,
+                    w.weight
+                )
+                FROM WeightTracking w
+                WHERE w.userId = :userId
+            """)
+    List<WeightTrackingDTO> findDTOByUserId(UUID userId);
 }
