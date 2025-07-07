@@ -1,6 +1,9 @@
 package com.calcounterbackend.calcounterbackend.service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,13 +15,9 @@ import com.calcounterbackend.calcounterbackend.repository.CalendarDateRepository
 public class CalendarDateService {
 
     @Autowired
-    private CalendarDateRepository calendarDateRepository; 
+    private CalendarDateRepository calendarDateRepository;
 
-    public List<CalendarDate> getAllDatesAndWeeks(){
-        return calendarDateRepository.getAllDays();
-    }
-    
-    public List<Integer> getAllWeeks(){
+    public List<Integer> getAllWeeks() {
         return calendarDateRepository.getAllWeeks();
     }
 

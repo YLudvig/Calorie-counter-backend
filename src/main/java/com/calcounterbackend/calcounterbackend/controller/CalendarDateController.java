@@ -19,10 +19,6 @@ public class CalendarDateController {
     
     private final CalendarDateService calendarDateService; 
 
-    @GetMapping("/getAllDatesAndWeeks")
-    public List<CalendarDate> getAllDatesAndWeeks(){
-        return calendarDateService.getAllDatesAndWeeks();
-    }
 
     @GetMapping("/getAllWeeks")
     public List<Integer> getAllWeeks(){

@@ -3,6 +3,7 @@ package com.calcounterbackend.calcounterbackend.model;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,14 +20,16 @@ public class WeightTracking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(columnDefinition = "CHAR(36)")
     private UUID weightTrackingId;
 
     private UUID userId;
 
-    private double weight;
-
     private double dailycalories;
 
-    private LocalDate date;
+    private String inputWeekDay;
 
+    private int week;
+
+    private double weight;
 }

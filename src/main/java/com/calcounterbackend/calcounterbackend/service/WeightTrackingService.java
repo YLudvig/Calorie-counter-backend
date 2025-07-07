@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.calcounterbackend.calcounterbackend.dto.WeightTrackingDTO;
 import com.calcounterbackend.calcounterbackend.model.WeightTracking;
 import com.calcounterbackend.calcounterbackend.repository.WeightTrackingRepository;
 
@@ -15,8 +16,12 @@ public class WeightTrackingService {
     @Autowired
     private WeightTrackingRepository weightTrackingRepository;
 
-    public List<WeightTracking> getWeightTrackingItems(UUID userId) {
+    public List<WeightTrackingDTO> getWeightTrackingItems(UUID userId) {
         return weightTrackingRepository.getWeightTrackingItems(userId);
+    }
+
+    public WeightTracking saveWeightTrackingItem(WeightTracking weightTracking) {
+       return weightTrackingRepository.save(weightTracking);
     }
     
 }

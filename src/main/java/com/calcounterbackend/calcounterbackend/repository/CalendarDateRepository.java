@@ -11,18 +11,18 @@ import com.calcounterbackend.calcounterbackend.model.CalendarDate;
 @Repository
 public interface CalendarDateRepository extends JpaRepository<CalendarDate, Long> {
 
-    @Query(value = """
-            SELECT *
-            FROM calendar_date
-            order by the_date
-            """, nativeQuery = true)
-    List<CalendarDate> getAllDays();
+        @Query(value = """
+                SELECT id, week_number, day_name, the_date
+                FROM calendar_date
+                ORDER BY week_number, the_date
+        """, nativeQuery = true)
+        List<CalendarDate> getAllDays();
 
-    @Query(value = """
-            SELECT distinct week_number
-            FROM calendar_date
-            order by week_number    
-            """, nativeQuery = true)
-    List<Integer> getAllWeeks();
+        @Query(value = """
+                SELECT distinct week_number
+                FROM calendar_date
+                order by week_number
+        """, nativeQuery = true)
+        List<Integer> getAllWeeks();
 
 }

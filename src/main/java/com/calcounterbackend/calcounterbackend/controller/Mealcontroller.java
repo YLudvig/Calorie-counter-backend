@@ -56,7 +56,6 @@ public class Mealcontroller {
     @PostMapping("/add")
     public String saveMealItem(@Valid @RequestBody Mealitem mealitem) {
         mealservice.saveMealitem(mealitem);
-        System.out.println(mealitem);
         return "Meal saved";
     }
 
