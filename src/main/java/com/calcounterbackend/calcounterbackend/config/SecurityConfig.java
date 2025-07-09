@@ -50,7 +50,7 @@ public class SecurityConfig {
                 .sessionManagement(sessionManagement -> 
                             sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))           
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/user/add", "/api/user/login").permitAll()
+                        .requestMatchers("/api/user/register", "/api/user/login").permitAll()
                         .anyRequest().authenticated());
         http.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
