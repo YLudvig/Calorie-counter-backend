@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.calcounterbackend.calcounterbackend.dto.AVGDTO;
 import com.calcounterbackend.calcounterbackend.dto.WeightTrackingDTO;
 import com.calcounterbackend.calcounterbackend.model.WeightTracking;
 import com.calcounterbackend.calcounterbackend.service.WeightTrackingService;
@@ -28,6 +29,11 @@ public class WeightTrackingController {
     @GetMapping("/getAllWeightTrackingItemsByUserId")
     public List<WeightTrackingDTO> getAllWeightTrackingItems(@RequestParam UUID userId) {
         return weightTrackingService.getWeightTrackingItems(userId);
+    }
+
+    @GetMapping("/getAveragesByUserId")
+    public List<AVGDTO> getAverages(@RequestParam UUID userId) {
+        return weightTrackingService.getAverages(userId);
     }
 
     @PostMapping("/addWeightAndCalories")
