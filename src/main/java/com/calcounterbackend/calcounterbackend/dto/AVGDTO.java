@@ -11,4 +11,5 @@ public class AVGDTO {
     Integer week; 
     Double avg_calories; 
     Double avg_weight; 
+    Double delta_weight;
 }
