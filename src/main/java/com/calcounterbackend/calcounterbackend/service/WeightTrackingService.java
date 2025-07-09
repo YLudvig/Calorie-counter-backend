@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.calcounterbackend.calcounterbackend.dto.AVGDTO;
 import com.calcounterbackend.calcounterbackend.dto.WeightTrackingDTO;
 import com.calcounterbackend.calcounterbackend.model.WeightTracking;
 import com.calcounterbackend.calcounterbackend.repository.WeightTrackingRepository;
@@ -22,6 +23,10 @@ public class WeightTrackingService {
 
     public WeightTracking saveWeightTrackingItem(WeightTracking weightTracking) {
        return weightTrackingRepository.save(weightTracking);
+    }
+
+    public List<AVGDTO> getAverages(UUID userId) {
+        return weightTrackingRepository.findAveragesByUserId(userId);
     }
     
 }
