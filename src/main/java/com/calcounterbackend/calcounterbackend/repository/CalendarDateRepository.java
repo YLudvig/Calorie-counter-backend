@@ -19,10 +19,9 @@ public interface CalendarDateRepository extends JpaRepository<CalendarDate, Long
         List<CalendarDate> getAllDays();
 
         @Query(value = """
-                SELECT distinct week_number
-                FROM calendar_date
-                order by week_number
+                SELECT WEEK(CURDATE(), 3) 
+                AS current_week;
         """, nativeQuery = true)
-        List<Integer> getAllWeeks();
+        Integer getCurrentWeek();
 
 }
