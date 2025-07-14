@@ -20,9 +20,9 @@ public class CalendarDateController {
     private final CalendarDateService calendarDateService; 
 
 
-    @GetMapping("/getAllWeeks")
-    public List<Integer> getAllWeeks(){
-        return calendarDateService.getAllWeeks();
+    @GetMapping("/getCurrentWeek")
+    public Integer getCurrentWeek(){
+        return calendarDateService.getCurrentWeek();
     }
 
 }
