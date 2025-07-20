@@ -32,15 +32,15 @@ public interface WeightTrackingRepository extends JpaRepository<WeightTracking, 
     @Query(value = """
             SELECT
               curr.week,
-              curr.avg_weight,
               curr.avg_calories,
+              curr.avg_weight,
               curr.avg_weight - prev.avg_weight AS delta_weight
             FROM
               (
                 SELECT
                   week,
-                  AVG(weight) AS avg_weight,
-                  AVG(dailycalories) AS avg_calories
+                  AVG(dailycalories) AS avg_calories,
+                  AVG(weight) AS avg_weight
                 FROM
                   weight_tracking
                 WHERE user_id = :userId
