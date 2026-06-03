@@ -59,7 +59,14 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:5173"));
+        config.setAllowedOrigins(List.of(
+            "http://localhost:5173", 
+            "http://localhost:8081", 
+            "http://192.168.0.34:8081", 
+            "https://calcounter.byyludvig.org", 
+            "http://calcounter.byyludvig.org", 
+            "http://localhost:8080", 
+            "http://192.168.0.34:8080"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
